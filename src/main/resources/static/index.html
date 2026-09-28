@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ShiftPlanner | Manager Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     APP LAYOUT
+===================================================== -->
+
+<div class="app">
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                🔄
+            </div>
+
+            <div>
+                <h1>ShiftPlanner</h1>
+                <p>Workforce Manager</p>
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <button
+                    class="nav-item active"
+                    data-section="dashboard"
+                    type="button"
+            >
+                <span class="nav-icon">🏠</span>
+                <span>Dashboard</span>
+            </button>
+
+
+            <button
+                    class="nav-item"
+                    data-section="employees"
+                    type="button"
+            >
+                <span class="nav-icon">👥</span>
+                <span>Employees</span>
+            </button>
+
+
+            <button
+                    class="nav-item"
+                    data-section="assign"
+                    type="button"
+            >
+                <span class="nav-icon">📅</span>
+                <span>Assign Shift</span>
+            </button>
+
+
+            <button
+                    class="nav-item"
+                    data-section="roster"
+                    type="button"
+            >
+                <span class="nav-icon">📋</span>
+                <span>My Roster</span>
+            </button>
+
+
+            <button
+                    class="nav-item"
+                    data-section="swaps"
+                    type="button"
+            >
+                <span class="nav-icon">🔄</span>
+
+                <span>Shift Swaps</span>
+
+                <span
+                        class="nav-badge"
+                        id="sidebarSwapCount"
+                >
+                    2
+                </span>
+            </button>
+
+
+            <button
+                    class="nav-item"
+                    data-section="timeline"
+                    type="button"
+            >
+                <span class="nav-icon">🔔</span>
+                <span>Activity Timeline</span>
+            </button>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <div class="manager-mini">
+
+                <div class="manager-avatar">
+                    J
+                </div>
+
+                <div class="manager-info">
+                    <strong>Janani</strong>
+                    <span>Manager</span>
+                </div>
+
+            </div>
+
+
+            <button
+                    class="logout-btn"
+                    id="logoutBtn"
+                    type="button"
+            >
+                <span>↪</span>
+                Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-menu" id="mobileMenu">
+                ☰
+            </div>
+
+            <div class="topbar-title">
+
+                <span class="eyebrow">
+                    MANAGER PORTAL
+                </span>
+
+                <h2 id="pageTitle">
+                    Shift Swap Management
+                </h2>
+
+                <p id="pageSubtitle">
+                    Review, approve and manage employee shift swaps.
+                </p>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <button
+                        class="icon-button"
+                        id="notificationBtn"
+                        type="button"
+                        title="Notifications"
+                >
+                    🔔
+
+                    <span
+                            class="notification-dot"
+                            id="notificationDot"
+                    ></span>
+
+                </button>
+
+
+                <div class="profile-menu">
+
+                    <div class="profile-avatar">
+                        J
+                    </div>
+
+                    <div class="profile-text">
+                        <strong>Janani</strong>
+                        <span>Manager</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGE AREA
+        ================================================== -->
+
+        <section class="page-area">
+
+
+            <!-- =============================================
+                 DASHBOARD SECTION
+            ============================================== -->
+
+            <div
+                    class="content-section active-section"
+                    id="dashboardSection"
+            >
+
+                <div class="welcome-card">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            GOOD MORNING 👋
+                        </span>
+
+                        <h1>
+                            Welcome back, Janani
+                        </h1>
+
+                        <p>
+                            Here's what's happening with your workforce today.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-icon">
+                        📊
+                    </div>
+
+                </div>
+
+
+                <!-- STATISTICS -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            👥
+                        </div>
+
+                        <div>
+                            <span>Total Employees</span>
+                            <strong>24</strong>
+                            <small>Active workforce</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                        <div>
+                            <span>Present Today</span>
+                            <strong>21</strong>
+                            <small>87.5% attendance</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            🔄
+                        </div>
+
+                        <div>
+                            <span>Pending Swaps</span>
+                            <strong id="dashboardPendingCount">
+                                2
+                            </strong>
+                            <small>Need your attention</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            📅
+                        </div>
+
+                        <div>
+                            <span>Today's Shifts</span>
+                            <strong>12</strong>
+                            <small>Scheduled shifts</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Quick Actions</h3>
+
+                            <p>
+                                Frequently used workforce tools.
+                            </p>
+                        </div>
+
+                        <span class="panel-icon">
+                            ⚡
+                        </span>
+
+                    </div>
+
+
+                    <div class="quick-actions">
+
+                        <button
+                                class="quick-action"
+                                data-section-target="employees"
+                                type="button"
+                        >
+                            <span>👥</span>
+
+                            <div>
+                                <strong>Add Employee</strong>
+                                <small>
+                                    Create a new employee
+                                </small>
+                            </div>
+
+                            <b>→</b>
+                        </button>
+
+
+                        <button
+                                class="quick-action"
+                                data-section-target="assign"
+                                type="button"
+                        >
+                            <span>📅</span>
+
+                            <div>
+                                <strong>Assign Shift</strong>
+                                <small>
+                                    Schedule a new shift
+                                </small>
+                            </div>
+
+                            <b>→</b>
+                        </button>
+
+
+                        <button
+                                class="quick-action"
+                                data-section-target="swaps"
+                                type="button"
+                        >
+                            <span>🔄</span>
+
+                            <div>
+                                <strong>Review Swaps</strong>
+                                <small>
+                                    Approve employee requests
+                                </small>
+                            </div>
+
+                            <b>→</b>
+                        </button>
+
+
+                        <button
+                                class="quick-action"
+                                data-section-target="timeline"
+                                type="button"
+                        >
+                            <span>🔔</span>
+
+                            <div>
+                                <strong>Activity Timeline</strong>
+                                <small>
+                                    Track recent activity
+                                </small>
+                            </div>
+
+                            <b>→</b>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECENT ACTIVITY -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Recent Activity</h3>
+                            <p>Latest workforce updates.</p>
+                        </div>
+
+                        <button
+                                class="text-button"
+                                data-section-target="timeline"
+                                type="button"
+                        >
+                            View all →
+                        </button>
+
+                    </div>
+
+                    <div id="dashboardActivity"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 EMPLOYEES SECTION
+            ============================================== -->
+
+            <div
+                    class="content-section"
+                    id="employeesSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">WORKFORCE</span>
+                        <h1>Employees</h1>
+                        <p>
+                            Manage your workforce and attendance.
+                        </p>
+                    </div>
+
+                    <button
+                            class="primary-btn"
+                            id="addEmployeeBtn"
+                            type="button"
+                    >
+                        + Add Employee
+                    </button>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="employee-table">
+
+                        <div class="employee-row table-heading">
+                            <span>Name</span>
+                            <span>Employee ID</span>
+                            <span>Department</span>
+                            <span>Status</span>
+                            <span>Action</span>
+                        </div>
+
+
+                        <div class="employee-row">
+
+                            <strong>Priya Sharma</strong>
+
+                            <span>EMP002</span>
+
+                            <span>Operations</span>
+
+                            <span class="status present">
+                                ● Present
+                            </span>
+
+                            <button
+                                    class="small-btn danger"
+                                    type="button"
+                            >
+                                Mark Absent
+                            </button>
+
+                        </div>
+
+
+                        <div class="employee-row">
+
+                            <strong>Rahul Rai</strong>
+
+                            <span>EMP003</span>
+
+                            <span>Support</span>
+
+                            <span class="status absent">
+                                ● Absent
+                            </span>
+
+                            <button
+                                    class="small-btn success"
+                                    type="button"
+                            >
+                                Mark Present
+                            </button>
+
+                        </div>
+
+
+                        <div class="employee-row">
+
+                            <strong>Arun Kumar</strong>
+
+                            <span>EMP004</span>
+
+                            <span>Production</span>
+
+                            <span class="status present">
+                                ● Present
+                            </span>
+
+                            <button
+                                    class="small-btn danger"
+                                    type="button"
+                            >
+                                Mark Absent
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ASSIGN SHIFT SECTION
+            ============================================== -->
+
+            <div
+                    class="content-section"
+                    id="assignSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">SCHEDULING</span>
+
+                        <h1>Assign Shift</h1>
+
+                        <p>
+                            Schedule employees for upcoming shifts.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-panel">
+
+                    <div class="form-group">
+
+                        <label>Employee</label>
+
+                        <select id="assignEmployee">
+
+                            <option>
+                                Priya Sharma
+                            </option>
+
+                            <option>
+                                Rahul Rai
+                            </option>
+
+                            <option>
+                                Arun Kumar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Date</label>
+
+                        <input
+                                type="date"
+                                id="assignDate"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Shift</label>
+
+                        <select id="assignShift">
+
+                            <option>
+                                Morning
+                            </option>
+
+                            <option>
+                                Afternoon
+                            </option>
+
+                            <option>
+                                Night
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Time</label>
+
+                        <select id="assignTime">
+
+                            <option>
+                                06:00 - 14:00
+                            </option>
+
+                            <option>
+                                14:00 - 22:00
+                            </option>
+
+                            <option>
+                                22:00 - 06:00
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                            class="primary-btn"
+                            id="assignShiftBtn"
+                            type="button"
+                    >
+                        Assign Shift
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ROSTER SECTION
+            ============================================== -->
+
+            <div
+                    class="content-section"
+                    id="rosterSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">SCHEDULE</span>
+
+                        <h1>My Roster</h1>
+
+                        <p>
+                            View today's workforce schedule.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="roster-grid">
+
+                    <div class="roster-card">
+
+                        <span class="roster-day">
+                            TODAY
+                        </span>
+
+                        <h3>Monday, 28 September</h3>
+
+                        <div class="roster-shift">
+                            <strong>Morning</strong>
+                            <span>06:00 - 14:00</span>
+                            <small>8 employees</small>
+                        </div>
+
+                        <div class="roster-shift">
+                            <strong>Afternoon</strong>
+                            <span>14:00 - 22:00</span>
+                            <small>7 employees</small>
+                        </div>
+
+                        <div class="roster-shift">
+                            <strong>Night</strong>
+                            <span>22:00 - 06:00</span>
+                            <small>5 employees</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 SHIFT SWAPS SECTION
+            ============================================== -->
+
+            <div
+                    class="content-section"
+                    id="swapsSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            APPROVAL CENTER
+                        </span>
+
+                        <h1>
+                            Shift Swap Management
+                        </h1>
+
+                        <p>
+                            Review, approve or reject employee shift swaps.
+                        </p>
+                    </div>
+
+                    <div class="approval-badge">
+                        🔄
+                        <span id="approvalCount">
+                            2 Pending
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- SEARCH + FILTER -->
+
+                <div class="filter-panel">
+
+                    <div class="search-box">
+
+                        <span>🔍</span>
+
+                        <input
+                                type="text"
+                                id="swapSearch"
+                                placeholder="Search employee or shift..."
+                        >
+
+                    </div>
+
+
+                    <select id="swapFilter">
+
+                        <option value="all">
+                            All Requests
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="accepted">
+                            Accepted
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SWAP CARDS -->
+
+                <div id="swapList"></div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 TIMELINE SECTION
+            ============================================== -->
+
+            <div
+                    class="content-section"
+                    id="timelineSection"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            WORKFORCE ACTIVITY
+                        </span>
+
+                        <h1>
+                            Activity Timeline
+                        </h1>
+
+                        <p>
+                            Track important workforce events.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-panel">
+
+                    <div id="timelineList"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONFIRMATION MODAL
+===================================================== -->
+
+<div
+        class="modal-overlay"
+        id="confirmModal"
+>
+
+    <div class="modal">
+
+        <button
+                class="modal-close"
+                id="modalClose"
+                type="button"
+        >
+            ×
+        </button>
+
+
+        <div
+                class="modal-icon"
+                id="modalIcon"
+        >
+            🔄
+        </div>
+
+
+        <h2 id="modalTitle">
+            Confirm Action
+        </h2>
+
+
+        <p id="modalMessage">
+            Are you sure?
+        </p>
+
+
+        <div class="modal-actions">
+
+            <button
+                    class="secondary-btn"
+                    id="cancelModal"
+                    type="button"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                    class="primary-btn"
+                    id="confirmAction"
+                    type="button"
+            >
+                Confirm
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NOTIFICATION PANEL
+===================================================== -->
+
+<div
+        class="notification-panel"
+        id="notificationPanel"
+>
+
+    <div class="notification-header">
+
+        <div>
+            <strong>Notifications</strong>
+            <span>Latest updates</span>
+        </div>
+
+        <button
+                id="closeNotifications"
+                type="button"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div id="notificationList"></div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+        class="toast"
+        id="toast"
+>
+
+    <span id="toastIcon">
+        ✓
+    </span>
+
+    <div>
+        <strong id="toastTitle">
+            Success
+        </strong>
+
+        <p id="toastMessage">
+            Action completed.
+        </p>
+    </div>
+
+</div>
+<!-- =========================================================
+     EMPLOYEE DASHBOARD
+========================================================= -->
+
+<section
+        id="employeeDashboardSection"
+        class="employee-dashboard-section"
+>
+
+    <!-- EMPLOYEE HEADER -->
+
+    <div class="employee-welcome">
+
+        <div>
+
+            <span class="employee-label">
+                EMPLOYEE PORTAL
+            </span>
+
+            <h1>
+                Welcome back, Employee 👋
+            </h1>
+
+            <p>
+                Manage your shifts, request swaps and track approvals.
+            </p>
+
+        </div>
+
+        <div class="employee-profile">
+
+            <div class="employee-avatar">
+                EM
+            </div>
+
+            <div>
+                <strong id="employeeDisplayName">
+                    Employee
+                </strong>
+
+                <small>
+                    Employee
+                </small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         EMPLOYEE QUICK CARDS
+    ====================================================== -->
+
+    <div class="employee-stats">
+
+        <div class="employee-stat-card">
+
+            <div class="employee-stat-icon">
+                📅
+            </div>
+
+            <div>
+
+                <span>Next Shift</span>
+
+                <strong id="employeeNextShift">
+                    Morning
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="employee-stat-card">
+
+            <div class="employee-stat-icon">
+                🔄
+            </div>
+
+            <div>
+
+                <span>My Requests</span>
+
+                <strong id="employeeRequestCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="employee-stat-card">
+
+            <div class="employee-stat-icon">
+                ⏳
+            </div>
+
+            <div>
+
+                <span>Pending</span>
+
+                <strong id="employeePendingCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="employee-stat-card">
+
+            <div class="employee-stat-icon">
+                🔔
+            </div>
+
+            <div>
+
+                <span>Notifications</span>
+
+                <strong id="employeeNotificationCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TODAY'S SHIFT
+    ====================================================== -->
+
+    <div class="employee-main-grid">
+
+        <div class="employee-panel today-shift-panel">
+
+            <div class="employee-panel-header">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        TODAY'S SCHEDULE
+                    </span>
+
+                    <h2>
+                        My Shift
+                    </h2>
+
+                </div>
+
+                <span class="shift-live-badge">
+                    ● Scheduled
+                </span>
+
+            </div>
+
+
+            <div class="today-shift-card">
+
+                <div class="big-shift-icon">
+                    🌅
+                </div>
+
+                <div>
+
+                    <h3 id="todayShiftName">
+                        Morning Shift
+                    </h3>
+
+                    <p id="todayShiftTime">
+                        06:00 - 14:00
+                    </p>
+
+                    <span id="todayShiftDate">
+                        28 September 2026
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="employee-panel">
+
+            <div class="employee-panel-header">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        QUICK ACTIONS
+                    </span>
+
+                    <h2>
+                        What would you like to do?
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="employee-actions">
+
+                <button
+                        type="button"
+                        class="employee-action-btn"
+                        id="viewRosterBtn"
+                >
+
+                    <span>📅</span>
+
+                    <div>
+                        <strong>View My Roster</strong>
+                        <small>See all assigned shifts</small>
+                    </div>
+
+                </button>
+
+
+                <button
+                        type="button"
+                        class="employee-action-btn"
+                        id="requestSwapBtn"
+                >
+
+                    <span>🔄</span>
+
+                    <div>
+                        <strong>Request Shift Swap</strong>
+                        <small>Ask a colleague to swap</small>
+                    </div>
+
+                </button>
+
+
+                <button
+                        type="button"
+                        class="employee-action-btn"
+                        id="viewRequestsBtn"
+                >
+
+                    <span>📨</span>
+
+                    <div>
+                        <strong>Swap Requests</strong>
+                        <small>Accept or decline requests</small>
+                    </div>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MY ROSTER
+    ====================================================== -->
+
+    <div
+            class="employee-panel"
+            id="employeeRosterPanel"
+    >
+
+        <div class="employee-panel-header">
+
+            <div>
+
+                <span class="panel-kicker">
+                    MY SCHEDULE
+                </span>
+
+                <h2>
+                    My Roster
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="employee-table-wrapper">
+
+            <table class="employee-table">
+
+                <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Shift</th>
+
+                    <th>Time</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="employeeRosterBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         REQUEST SWAP
+    ====================================================== -->
+
+    <div
+            class="employee-panel"
+            id="employeeSwapPanel"
+    >
+
+        <div class="employee-panel-header">
+
+            <div>
+
+                <span class="panel-kicker">
+                    SHIFT MANAGEMENT
+                </span>
+
+                <h2>
+                    Request a Shift Swap
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="swap-form-grid">
+
+            <div class="employee-form-group">
+
+                <label>
+                    My Shift
+                </label>
+
+                <select id="employeeShiftSelect">
+
+                </select>
+
+            </div>
+
+
+            <div class="employee-form-group">
+
+                <label>
+                    Swap With
+                </label>
+
+                <select id="employeeColleagueSelect">
+
+                </select>
+
+            </div>
+
+
+            <div class="employee-form-group full-width">
+
+                <label>
+                    Reason
+                </label>
+
+                <textarea
+                        id="employeeSwapReason"
+                        rows="4"
+                        placeholder="Enter the reason for requesting this swap..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <button
+                type="button"
+                class="employee-primary-btn"
+                id="sendSwapRequestBtn"
+        >
+            🔄 Send Swap Request
+        </button>
+
+
+        <p
+                id="employeeSwapMessage"
+                class="employee-message"
+        ></p>
+
+    </div>
+
+
+    <!-- =====================================================
+         INCOMING REQUESTS
+    ====================================================== -->
+
+    <div
+            class="employee-panel"
+            id="incomingRequestsPanel"
+    >
+
+        <div class="employee-panel-header">
+
+            <div>
+
+                <span class="panel-kicker">
+                    COLLEAGUE REQUESTS
+                </span>
+
+                <h2>
+                    Incoming Swap Requests
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div id="incomingSwapList">
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MY SWAP REQUESTS
+    ====================================================== -->
+
+    <div class="employee-panel">
+
+        <div class="employee-panel-header">
+
+            <div>
+
+                <span class="panel-kicker">
+                    TRACKING
+                </span>
+
+                <h2>
+                    My Swap Requests
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div id="myEmployeeSwapList">
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         EMPLOYEE ACTIVITY
+    ====================================================== -->
+
+    <div class="employee-panel">
+
+        <div class="employee-panel-header">
+
+            <div>
+
+                <span class="panel-kicker">
+                    RECENT ACTIVITY
+                </span>
+
+                <h2>
+                    My Activity
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div id="employeeActivityList">
+
+        </div>
+
+    </div>
+
+
+    <!-- LOGOUT -->
+
+    <div class="employee-logout-area">
+
+        <button
+                type="button"
+                id="employeeLogoutBtn"
+                class="employee-logout-btn"
+        >
+            🚪 Logout
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
